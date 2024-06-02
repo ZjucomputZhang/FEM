@@ -20,7 +20,7 @@ K_e = zeros(8,8);
 D = D_calc(E, v);
 for i = 1:4
     [B,J] = B_calc(Ae ,Simga_in(i), Theta_in(i));
-    K_e = t*J*(K_e + B'*D*B);
+    K_e = K_e + t*J*(B'*D*B);
 end
 
 end
