@@ -35,10 +35,7 @@ for i = 1:len
     K(:, 2*position_constrain(i)) = zeros(2*nodes_num,1);
     K(2*position_constrain(i), :) = zeros(1,2*nodes_num);
 end
-% Alpha = power(10,9);
-% for i = 1:len
-%     K((2*position_constrain(i)-1):2*position_constrain(i), (2*position_constrain(i)-1):2*position_constrain(i)) = Alpha*K((2*position_constrain(i)-1):2*position_constrain(i), (2*position_constrain(i)-1):2*position_constrain(i));
-% end
+
 for i = 1:len
     K((2*position_constrain(i)-1), (2*position_constrain(i)-1)) = 1;
     K(2*position_constrain(i), 2*position_constrain(i)) = 1;

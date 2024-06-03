@@ -10,8 +10,8 @@
 %position_constrain：index of node which is position constrained
 
 %input:
-x_i = 1:0.1:5;
-y = 0.5;
+x_i = 1:0.01:5;
+y = 1.0;
 mode = 1;
 %generate
 [ele, A_e, nodes_num] = Param_Gen(x_i, y, mode);
@@ -23,16 +23,16 @@ else
     middle_ele = (len + 1)/2;
 end
 P_e = zeros(8, len);
-P_e(6,middle_ele) = power(10,6);
-% P_e(3,len) = power(10,5);
+P_e(6,len) = -power(10,7);
+% P_e(4,len) = power(10,8);
 %coefficient
 E = 210;
-v = 0.28;
+v = 0.3;
 %thickness 
-t = 0.01;
+t = 0.025;
 %position constrain
 %nodes_num/2 nodes_num/2+1
-position_constrain = [1 nodes_num/2 nodes_num/2+1 nodes_num]';
+position_constrain = [1  nodes_num]';
 
 %----main-------%
 

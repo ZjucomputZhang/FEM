@@ -49,13 +49,13 @@ A_e = zeros(8,len);
 
 for i = 1:len
     A_e(1,i) = x(i);
-    A_e(2,i) = 0;
+    A_e(2,i) = -t/2;
     A_e(3,i) = x(i+1);
-    A_e(4,i) = 0;
+    A_e(4,i) = -t/2;
     A_e(5,i) = x(i+1);
-    A_e(6,i) = t;
+    A_e(6,i) = t/2;
     A_e(7,i) = x(i);
-    A_e(8,i) = t;
+    A_e(8,i) = t/2;
 end
 
 end
