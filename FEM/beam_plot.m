@@ -1,4 +1,26 @@
-function [state] = beam_plot(A_i, A_t, x, t, nodes_num)
+function [state] = beam_plot(A_i, A_t, x, t, nodes_num, mode)
+
+if mode == 1
+%calculate initial coordinates
+x_i = zeros(nodes_num,1);
+y_i = zeros(nodes_num,1);
+for i = 1:nodes_num
+    x_i(i) = A_i(2*i-1);
+    y_i(i) = A_i(2*i);
+end
+%calculate final coordinate
+x_t = zeros(nodes_num,1);
+y_t = zeros(nodes_num,2);
+for i = 1: nodes_num
+    x_t(i) = A_t(2*i-1);
+    y_t(i) = A_t(2*i);
+end
+%output
+plot(x_i, y_i, '-', x_t, y_t, '-');
+axis([-5 10 -8 8]);
+end
+
+if mode == 2
 x_len = length(x);
 t_len = length(t);
 %---standardize the coordinate---%
@@ -38,6 +60,8 @@ axis([-5 10 -8 8]);
 subplot(1,2,2);
 plot(x_h, y_h, '-', x_v, y_v, '-');
 axis([-5 10 -8 8]);
-
+end
+%confirm the state
 state = 1;
+
 end
