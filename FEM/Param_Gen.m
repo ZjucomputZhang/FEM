@@ -4,10 +4,7 @@ nodes_num = 0;
 eles_num = 0;
 
 %confirm the mode
-if mode ~= 1
-    return
-end
-
+if mode == 1
 %calculate the nodes' num
 x_len = length(x);
 nodes_num = 2*x_len;
@@ -56,6 +53,42 @@ for i = 1:len
     A_e(6,i) = t/2;
     A_e(7,i) = x(i);
     A_e(8,i) = t/2;
+end
+
+end
+%mesh generate
+if mode == 2
+
+x_len = length(x);
+t_len = length(t);
+col = x_len - 1;
+raw = t_len - 1;
+%calculate nodes_num
+nodes_num = x_len*t_len;
+%claculate eles_num
+eles_num = col*raw;
+ele = zeros(eles_num, 5);
+%generate matrix ele
+for i = 1:eles_num
+    ele(i,1) = i;
+    ele(i,2) = i + fix((i-1)/col);
+    ele(i,3) = ele(i,2) + 1;
+    ele(i,4) = ele(i,3) + x_len;
+    ele(i,5) = ele(i,2) + x_len;
+end
+%generate element nodes' coordinate
+A_e = zeros(8, eles_num);
+for i = 1:eles_num
+    A_e(1,i) = x(rem(i-1,col)+1);
+    A_e(2,i) = t(floor((i-1)/col)+1);
+    A_e(3,i) = x(rem(i-1,col)+2);
+    A_e(4,i) = A_e(2,i);
+    A_e(5,i) = A_e(3,i);
+    A_e(6,i) = t(floor((i-1)/col)+2);
+    A_e(7,i) = A_e(1,i);
+    A_e(8,i) = A_e(6,i);
+end
+
 end
 
 end
