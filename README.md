@@ -8,9 +8,24 @@ This project is aimed to calculate the displacement of the beam given force. Est
 
 ## 2. article reference
 
-the project theory [theory reference](https://blog.qiql.net/archives/fem1>)
-the project code structure reference [code structure reference](https://zhuanlan.zhihu.com/p/363678419)
-the plot reference [plot reference] ()
+main reference:
+
+[theory reference](https://blog.qiql.net/archives/fem1>)
+
+[code structure reference](https://zhuanlan.zhihu.com/p/363678419)
+
+[plot reference](https://cn.comsol.com/multiphysics/mesh-refinement)
+
+other reference:
+
+[FEA Theory](https://cn.comsol.com/multiphysics/finite-element-method?parent=physics-pdes-numerical-042-62)
+
+[FEA Beam Project](https://blog.csdn.net/weixin_43891316/article/details/113053683)
+
+[等参单元](https://blog.csdn.net/dingke2010/article/details/83858743)
+
+[高斯积分](https://blog.csdn.net/poqw2010/article/details/79487919)
+
 
 ## 3.function 
 
