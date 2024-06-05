@@ -11,7 +11,7 @@
 
 %input:
 x_i = 1:0.05:5;
-y = 1:0.05:2;
+y = 1:0.1:2;
 mode = 2;
 %generate
 [ele, A_e, nodes_num] = Param_Gen(x_i, y, mode);
@@ -29,10 +29,10 @@ P_e = zeros(8, len);
 %----------------%
 
 %---mode == 2 ---%
-% P_e(6, len - middle_ele) = -power(10,8);
+P_e(6, len - middle_ele) = -power(10,8);
 % P_e(4,length(x_i)-1) =  2*power(10,7);
-P_e(5, len) = -power(10,8);
-P_e(3, length(x_i)-1) = -power(10,8);
+% P_e(6, len) = -power(10,7);
+% P_e(4, length(x_i)-1) = power(10,8);
 %----------------%
 %coefficient
 E = 210;
@@ -42,7 +42,7 @@ t = 0.03;
 %position constrain
 %<mode 1> 4 boundary nodes: 1...nodes_num/2...nodes_num/2+1...nodes_num 
 %<mode 2> 4 boundary nodes: 1...length(x_i)-1...nodes_num...nodes_num - length(x_i) + 1
-position_constrain = [1 nodes_num - length(x_i) + 1]';
+position_constrain = [1 length(x_i)-1  nodes_num - length(x_i) + 1 nodes_num]';
 
 %----main-------%
 
@@ -62,7 +62,7 @@ P = P_calc(ele, nodes_num, P_e, position_constrain, K, A_t);
 u = K\P;
 A_t_ = A_t + u;
 %output
-if beam_plot(A_t, A_t_, x_i, y, nodes_num, mode) == 1
+if beam_plot(A_t, A_t_, x_i, y, nodes_num, mode,E) == 1
     return 
 end
 

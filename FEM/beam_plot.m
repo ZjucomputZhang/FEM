@@ -1,4 +1,4 @@
-function [state] = beam_plot(A_i, A_t, x, t, nodes_num, mode)
+function [state] = beam_plot(A_i, A_t, x, t, nodes_num, mode,E)
 
 if mode == 1
 %calculate initial coordinates
@@ -57,11 +57,43 @@ end
 subplot(1,2,1);
 plot(x_h_,y_h_,'-', x_v_, y_v_, '-');
 axis([-5 10 -8 8]);
+
 subplot(1,2,2);
 plot(x_h, y_h, '-', x_v, y_v, '-');
 axis([-5 10 -8 8]);
+
+% add the color
+x_p = zeros(2*x_len + 2*t_len, 1);
+y_p = zeros(2*x_len + 2*t_len, 1);
+c_p = zeros(2*x_len + 2*t_len, 1);
+u = A_t - A_i;
+for i = 1:nodes_num
+    if i<= x_len
+        x_p(i) = A_t(2*i-1);
+        y_p(i) = A_t(2*i);
+        c_p(i) = abs(u(2*i-1)) + abs(u(2*i));
+    end
+    if rem(i, x_len) == 0
+        x_p(floor(i/x_len)+x_len,1) = A_t(2*i-1);
+        y_p(floor(i/x_len)+x_len,1) = A_t(2*i);
+        c_p(floor(i/x_len)+x_len,1) = abs(u(2*i-1)) + abs(u(2*i));
+    end
+    if rem(i,x_len) == 1
+        x_p(-floor(i/x_len)+2*x_len+2*t_len,1)= A_t(2*i-1);
+        y_p(-floor(i/x_len)+2*x_len+2*t_len,1)= A_t(2*i);
+        c_p(-floor(i/x_len)+2*x_len+2*t_len,1)= abs(u(2*i-1)) + abs(u(2*i));
+    end
+    if i>= nodes_num - x_len + 1
+        x_p(nodes_num - i + 1 + x_len + t_len) = A_t(2*i-1);
+        y_p(nodes_num - i + 1 + x_len + t_len) = A_t(2*i);
+        c_p(nodes_num - i + 1 + x_len + t_len) = abs(u(2*i-1)) + abs(u(2*i));
+    end
 end
+
+patch(x_p, y_p, c_p*E*10^9);
+colorbar
+end
+
 %confirm the state
 state = 1;
-
 end
