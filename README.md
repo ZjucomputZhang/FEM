@@ -8,7 +8,9 @@ This project is aimed to calculate the displacement of the beam given force. Est
 
 ## 2. article reference
 
-[main reference]<> 
+the project theory [theory reference](https://blog.qiql.net/archives/fem1>)
+the project code structure reference [code structure reference](https://zhuanlan.zhihu.com/p/363678419)
+the plot reference [plot reference] ()
 
 ## 3.function 
 
